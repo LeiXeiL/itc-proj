@@ -9,7 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 3))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2))
             {
                 if (hit.collider.CompareTag("Interactable") && transform.childCount == 1)
                 {
