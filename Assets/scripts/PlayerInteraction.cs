@@ -11,12 +11,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2))
             {
-                if (hit.collider.CompareTag("Interactable") && transform.childCount == 1)
+                if (hit.collider.CompareTag("Pickable") && transform.childCount == 1)
                 {
                     GameObject item = hit.collider.gameObject;
                     item.transform.SetParent(gameObject.transform);
-                    //item.transform.position = new Vector3(0.468f, -0.303f, 0.816f);
-                    //item.transform.rotation = Quaternion.Euler(1, 1, 1);
                     item.transform.position = ToHandPos.transform.position;
                     item.transform.rotation = ToHandPos.transform.rotation;
 
@@ -29,6 +27,15 @@ public class PlayerInteraction : MonoBehaviour
                         item.GetComponent<Collider>().isTrigger= true;
                     }
                 }
+                //----------------------------------------------------------------------
+                //                            DOOR
+                //----------------------------------------------------------------------
+                if (hit.collider.CompareTag("Door"))
+                {
+                    hit.collider.GetComponent<DoorInfo>().OpenClose();
+                }
+                //----------------------------------------------------------------------
+                //----------------------------------------------------------------------
             }
         }
         if (Input.GetKeyDown(KeyCode.Q) && transform.childCount >= 2)
